@@ -84,6 +84,8 @@ https://onevcat.com/2015/05/scheme/
 	Error:Execution failed for task ':app:transformResourcesWithMergeJavaResForDebug'.
 > More than one file was found with OS independent path 'META-INF/rxjava.properties'
 
+简单的一下更新
+
 
 
 
