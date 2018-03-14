@@ -1,0 +1,133 @@
+问题：
+
+https://onevcat.com/2015/05/scheme/
+在学习Scheme语言的时候，出现了这句话
+：用专业一点的术语来说的话，就是 define 的第一个参数是一个 cons cell 的话，它的 car 是函数名，cdr 是参数。关于这些概念我们稍后再仔细说说。
+
+(define hello
+        (lambda (name)
+            (string-append "Hello " name "!")
+        )
+      )
+
+(define (hello name)
+        (string-append "Hello " name "!"))
+		
+赋值，分支和循环。
+
+赋值：单个变量   函数结构体的定义
+分支：IF判断语句
+循环：
+	java while do
+	
+	注意停止时间：
+		(do ((i 5 (- i 1)))    初始值 运算
+			((< i 0))  停止条件，而不是我们习惯的进入循环主体的条件
+			(display i) 循环执行
+			)
+
+			
+			    @Override
+    public Response intercept(Chain chain) throws IOException {
+
+        Request request = chain.request();
+        RequestBody requestBody = request.body();
+
+        String body = null;
+
+        if(requestBody != null) {
+            Buffer buffer = new Buffer();
+            requestBody.writeTo(buffer);
+
+            Charset charset = UTF8;
+            MediaType contentType = requestBody.contentType();
+            if (contentType != null) {
+                charset = contentType.charset(UTF8);
+            }
+            body = buffer.readString(charset);
+        }
+
+        Logger.e("发送请求\nmethod：%s\nurl：%s\nheaders: %sbody：%s",
+                request.method(), request.url(), request.headers(), body);
+
+        long startNs = System.nanoTime();
+        Response response = chain.proceed(request);
+        long tookMs = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startNs);
+
+        ResponseBody responseBody = response.body();
+        String rBody = null;
+
+        if(HttpEngine.hasBody(response)) {
+            BufferedSource source = responseBody.source();
+            source.request(Long.MAX_VALUE); // Buffer the entire body.
+            Buffer buffer = source.buffer();
+
+            Charset charset = UTF8;
+            MediaType contentType = responseBody.contentType();
+            if (contentType != null) {
+                try {
+                    charset = contentType.charset(UTF8);
+                } catch (UnsupportedCharsetException e) {
+                    e.printStackTrace();
+                }
+            }
+            rBody = buffer.clone().readString(charset);
+        }
+
+        Logger.e("收到响应 %s%s %ss\n请求url：%s\n请求body：%s\n响应body：%s",
+                response.code(), response.message(), tookMs, response.request().url(), body, rBody);
+
+        return response;
+    }
+
+	
+	Error:Execution failed for task ':app:transformResourcesWithMergeJavaResForDebug'.
+> More than one file was found with OS independent path 'META-INF/rxjava.properties'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
