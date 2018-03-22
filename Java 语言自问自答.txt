@@ -21,4 +21,17 @@
 	
 	抽象类和接口：抽象类只能单一继承，而接口可以多继承！
 	
+集合：
+
+	1：Collection c = new ArrayList(); 其创建的这个对象，可以使用父类中的所有方法
+	2：HashSet 与 TreeSet 的区别。
+		Set set = new HashSet();
+		c.add("a");
+		Set sortSet = new TreeSet(c)；向下转型 
+		打印set 和 打印sortSet 有区别！
+			区别：在于直接排序了。但是不知道为什么
+			问题来源：http://blog.csdn.net/u014136713/article/details/52089156
+		
+		
+	
 
