@@ -1,0 +1,390 @@
+^((13[0-9])|(15[^4,\D])|(17[0-9])|(18[0,5-9]))\d{8}$
+
+
+601531918b3e726a320f5aa6628c8a652d8a3e41
+
+0417工作计划
+
+1：上午 
+1：完成对相应服务页面的接口整理
+2：发版微商代发
+
+2：下午
+1：H5页面模板跳转 （6个地方） （完成： 15.34）
+
+关于单一跳转到url 界面：
+         Intent intent = new Intent(this, NoticeActivity.class);
+                intent.putExtra("serviceurl" ,mRrl);
+                startActivity(intent);
+				
+		toolbar.setNavigationOnClickListener(this);
+		
+		顶部toolbar
+		  //顶部
+        LinearLayout ll_domestichelp_top =(LinearLayout) findViewById(R.id.ll_domestichelp_top);
+        Toolbar t =(Toolbar) ll_domestichelp_top.findViewById(R.id.t);
+        t.setNavigationOnClickListener(this);
+		        TextView tv_driverhelp_notice =(TextView) t.findViewById(R.id.tv_driverhelp_notice);
+		
+		    private String mRrl = Config.mUrl;
+			
+			      switch (v.getId()){
+            case R.id.t :
+                //返回操作
+                finish();
+                break;
+
+            case R.id.tv_driverhelp_notice :
+                Intent intent = new Intent(this, NoticeActivity.class);
+                intent.putExtra("serviceurl" ,mRrl);
+                startActivity(intent);
+                break ;
+        }
+
+2：修改底部符号，显示出其价格明细界面对接 （完成 ： 16:26）
+
+    RelativeLayout bottom_destichelp =(RelativeLayout) findViewById(R.id.bottom_destichelp);
+        LinearLayout ll_bottom_price =(LinearLayout) bottom_destichelp.findViewById(R.id.ll_bottom_price);
+        ll_bottom_price.setOnClickListener(this);
+
+    showPriceDetail();
+	
+	     case R.id.ll_bottom_price:
+                showPriceDetail();
+                break;
+
+            default:
+
+                break;
+ /**
+     * 价格明细底部弹出框
+     */
+    private void showPriceDetail() {
+        Dialog bottomDialog = new Dialog(this, R.style.BottomDialog);
+        View contentView = LayoutInflater.from(this).inflate(R.layout.poplayout_pricedetail, null);
+        bottomDialog.setContentView(contentView);
+        ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) contentView.getLayoutParams();
+        params.width = getResources().getDisplayMetrics().widthPixels - DensityUtil.dp2px(this, 16f);
+        params.bottomMargin = DensityUtil.dp2px(this, 48f);
+        contentView.setLayoutParams(params);
+        bottomDialog.getWindow().setGravity(Gravity.BOTTOM);
+        bottomDialog.getWindow().setWindowAnimations(R.style.BottomAnimation);
+        bottomDialog.show();
+    }
+	
+3：UI所提秒杀活动界面透明度问题（明天常利兵来了解决）
+
+4：服务地址后边的操作，点击定位于直接选择地址接入   tv_selector_area （完成 ： 18:01）
+
+     <com.oxnice.client.widget.AddressView
+                    android:id="@+id/addressview_domestichelp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></com.oxnice.client.widget.AddressView>
+					
+					    AddressView addressview_domestichelp =(AddressView) findViewById(R.id.addressview_domestichelp);
+        addressview_domestichelp.setOnAddressSuredListener(this);
+					
+		, AddressView.OnAddressSuredListener{
+
+    //用户选择的地址
+    private String mAddressResult = "";
+	
+	       this.mAddressResult = addressResult ;
+		   
+		
+5：预约时间确定为接口提供， 设定数据，进行单一项选择 （需要找一个控件，提取代码，然后进行单一使用）
+
+	
+
+6：服务发票点击事件处理 （多个界面）
+
+20180418 工作日志
+
+ 已告知 3 于 常利兵
+
+1：完善5 ： 为上部控件提供数据 （完成：10：13）
+
+2：完善6  （完成 ： 10:13）
+
+             <com.oxnice.client.widget.ServiceTimeView
+                    android:id="@+id/servicetime_repairhelp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></com.oxnice.client.widget.ServiceTimeView>
+					
+			     //时间选择和发票情况
+				 
+				         mShowTimeRl = findViewById(R.id.show_time_rl);
+        mParent = findViewById(R.id.parent_rl);
+		
+		    private RelativeLayout mShowTimeRl;  //
+    private LinearLayout mParent;
+		
+		   mShowTimeRl.setOnClickListener(this);
+		   
+		           case R.id.show_time_rl:
+                addressBeans = showTimePop(mParent, view, loopView);
+                break;
+				 
+        final ServiceTimeView servicetime_repairhelp = (ServiceTimeView) findViewById(R.id.servicetime_repairhelp);
+        servicetime_repairhelp.setOnTimeAndBillClickListener(this);
+        view = getLayoutInflater().inflate(R.layout.layout_time_pop, null);
+        loopView = view.findViewById(R.id.time_lp);
+        loopView.setListener(new OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(int index) {
+                LogUtil.e("service", "repaire: onItemSelected :" + index);
+                if (null != addressBeans && addressBeans.size() > 0){
+                    AddressBean addressBean = addressBeans.get(index);
+                    servicetime_repairhelp.setTimeText(addressBean.getArea_name());
+                }
+            }
+        });
+
+		    private View view;
+    private LoopView loopView;
+    private List<AddressBean> addressBeans;
+	 // 时间
+    private String mTime;
+	
+	 //发票
+    private boolean mNeedBill = false;
+	
+	, ServiceTimeView.OnTimeAndBillClickListener {
+	
+	   mNeedBill = need;
+	   
+	    addressBeans = showTimePop(mParent, view, loopView);
+
+
+7：帮帮加速代码提供复用， 另外就是操作接入几个界面，提供出选择项 （有个自定义的弹框， 需要看dialog） (完成：14:45)
+8：优惠券去掉，积分使用情况，进行修改。弹出框样式 （v代发有输入框） （完成：14:25）
+
+
+			修改字段
+	  
+			     <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:background="@drawable/shape_biankuang"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="15dp"
+                    android:elevation="3dp"
+                    android:layout_height="wrap_content">
+					      <com.oxnice.client.widget.AccelerateView
+                    android:id="@+id/domestic_accelerate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></com.oxnice.client.widget.AccelerateView>
+					
+                </LinearLayout>		
+					    // 帮帮加速 repair_accelerate
+        AccelerateView domestic_accelerateView = (AccelerateView) findViewById(R.id.repair_accelerate);
+        domestic_accelerateView.setOnAccelerateEffectListener(this);
+        domestic_accelerateView.setMaxNum("100");
+		
+		, AccelerateView.OnAccelerateEffectListener{
+		
+		        LogUtil.e("service" , "domestic +" + AccelerateMoney);
+				     LogUtil.e("service" , "domestic +" + point);
+				
+					
+			
+
+
+ 
+9： 服务类型获取  10：服务联系人   （完成 16:36）
+11：服务说明修改EditText 及 获取图片选择地址！ （完成 ： 16:36）
+
+     <com.oxnice.client.widget.UploadPhotosView
+                    android:id="@+id/uploadphotoview_repair"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></com.oxnice.client.widget.UploadPhotosView>
+
+       android:id="@+id/ll_helpperson_repair"
+	   
+	      LinearLayout ll_helpperson = (LinearLayout) findViewById(R.id.ll_helpperson);
+        NiceSpinner niceSpinner = (NiceSpinner) ll_helpperson.findViewById(R.id.nice_spinner_helperson_domestic);
+        ImageView getphonenum = (ImageView) ll_helpperson.findViewById(R.id.kind_r_second);
+		
+		  domestichelp_num = (TextView) ll_helpperson.findViewById(R.id.domestichelp_num);
+        domestichelp_name = (TextView) ll_helpperson.findViewById(R.id.domestichelp_name);
+		    private TextView domestichelp_num;
+    private TextView domestichelp_name;
+	
+		    <org.angmarch.views.NiceSpinner
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:gravity="right"
+            android:layout_marginRight="3dp"
+            android:id="@+id/nice_spinner_helperson_domestic"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            />
+		
+		
+        getphonenum.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requestPermissionss();
+            }
+        });
+		    private UploadPhotosView mUploadPhotosViewRepair;
+		    mUploadPhotosViewRepair = (UploadPhotosView) findViewById(R.id.uploadphotoview_repair);
+			
+			    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        readPermissionsResult(requestCode, permissions, grantResults, mUploadPhotosViewRepair);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        onResultDone(requestCode, resultCode, data ,pinpai_name , pinpai_num , mUploadPhotosViewRepair);
+    }
+
+	     mUploadPhotosViewRepair.setActivity(RepairHelpActivity.this);
+		
+		private void onResultDone(int requestCode, int resultCode, Intent data, final TextView domestichelp_name, final TextView domestichelp_num, UploadPhotosView uploadPhotosView) {
+        if (resultCode == Activity.RESULT_OK && requestCode == 0) {
+            //处理返回的data,获取选择的联系人信息
+            Uri data1 = data.getData();
+            final String[] phoneContacts = getPhoneContacts(data1);
+            if (!TextUtils.isEmpty(phoneContacts[0])) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        domestichelp_name.setText(phoneContacts[0]);
+                    }
+                });
+            }
+
+            if (!TextUtils.isEmpty(phoneContacts[1])) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        domestichelp_num.setText(phoneContacts[1]);
+                    }
+                });
+            }
+        } else {
+            if (resultCode == Activity.RESULT_OK && requestCode == Config.DOMESTIVHELPACTIVITY_PHOTOCODE) {
+                if (null != data) {
+                    List<Uri> uris = Matisse.obtainResult(data);
+                    uploadPhotosView.setUris(uris);
+                }
+            }
+        }
+    }
+
+14：定位点 ！ (完成 ： 18:40)	
+
+
+19：H5页面 封装修改 提供加载失败 和动态tile  12个H5页面 接入 “” 其他的给吴成峰！ （已完成 4月18）
+
+   Intent intent = new Intent(this, NoticeActivity.class);
+                intent.putExtra("serviceurl", mRrl);
+                intent.putExtra("hfivetitle", "使用须知");
+                startActivity(intent);
+				
+				     val intent = Intent(this, NoticeActivity::class.java)
+                intent.putExtra("serviceurl",Config.H_ABOUT_US)
+                intent.putExtra("hfivetitle", "关于我们")
+                startActivity(intent)	
+
+10：关于数据下载与对数据库对接 （关于后台数据调整）
+
+	"name": "河南省",
+	"code": "410000",
+	"level": 1
+	
+							"name": "郑州市",
+						"code": "410100",
+						"level": 2
+						
+													"name": "二七区",
+													"code": "410103",
+													"level": 3
+													
+													"name": "中原区",
+													"code": "410102",
+													"level": 3
+						
+						"name": "驻马店市",
+						"code": "411700",
+						"level": 2
+						
+														"name": "正阳县",
+														"code": "411724",
+														"level": 3
+														
+															"name": "确山县",
+															"code": "411725",
+															"level": 3
+						
+							"name": "漯河市",
+						"code": "411100",
+						"level": 2
+						
+											
+	13:加载网页界面 的Tile 和加载失败View展示！ （完成一半）
+
+   private boolean isFirst = true ;
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (!isFirst){
+            addressview_domestichelp.setAddressLocation();
+        }
+    }
+													
+									
+
+12：显示图片的横向View  （已交由吴成峰 4月18）
+
+13：截止时间这些东西的嫁接 ， 问清楚这个时间是不是仅仅就是当天， 还是有多种展示效果！
+
+
+
+
+
+11：注意BaseActivity 写服务的时候用了很多方法都被提取到这里边了， 应该在MinddlerActivity
+
+12；注意修改下拉库的箭头指示的修改！
+
+18：控件双击有重复跳转效果 未处理！
+	
+
+15:分享 ShareDialog
+
+
+16：注意Middle封装类 ， 修改可空！ 在使用过程中 注意针对 莫一项 例如 显示电话或者是显示图片控件的非空判断
+
+17：你知道的 需要把一些东西 集中放到MInddle中， 然后每一次在页面销毁的时候， 把相应赋值对象质控
+
+
+
+
+20：拍照蹦
+
+9：确定按键后，内容收集 （这个很厉害了！）
+
+21：测试提供需修改部分， 具体如下 （已完成）
+
+	22：禅道 修改收货地址点击效果 （完成 9:48）
+
+	22：修改确认订单无法完全显示 23 ： 修改找帮手页面积分抵扣字体 （完成 10:26）
+
+23:添加搜索框 
+
+
+
+
+
+
+
+
+		
+		
+
+
