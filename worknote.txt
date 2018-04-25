@@ -366,7 +366,7 @@
 
 
 
-20：拍照蹦
+20：拍照蹦 
 
 9：确定按键后，内容收集 （这个很厉害了！）
 
@@ -376,11 +376,100 @@
 
 	22：修改确认订单无法完全显示 23 ： 修改找帮手页面积分抵扣字体 （完成 10:26）
 
-23:添加搜索框 
 
 24: bug 修改 ！ （4:23 16:06 已完成）
 
-25：吴成峰需要些那个预约订单 右边按键排在最右边！
+25：吴成峰需要些那个预约订单 右边按键排在最右边！ (4:24 08:44已告知)
+
+		
+		
+		
+		2018 04 24 08 ： 44 工作日志
+
+1：关于bug 后退按键的修改， 需要根据CZSD 来查找 （已完成 09:55  21个页面  BUG平台bug整理完毕）
+	
+	服务付款结果
+	公益活动详情
+	地址管理
+	 优惠券/积分
+	 
+	   Toolbar tb_orderdetaill =(Toolbar) findViewById(R.id.tb_orderdetaill);
+        tb_orderdetaill.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+		
+		
+
+2：需要修改1 商品数量默认价格为1  (已完成   09:00 )
+
+
+
+3：需要进行修改 选择图片中不进行显示拍照按键， 需要进行不回显操作！ （已完成11:30）
+	
+
+https://blog.csdn.net/cn_1937/article/details/73801694?utm_source=itdadao&utm_medium=referral
+
+Error:C:\project\bb_help0413\livehelp_client\src\main\AndroidManifest.xml:151:17-52 Error:
+	Attribute meta-data#android.support.FILE_PROVIDER_PATHS@resource value=(@xml/myfilepaths) from AndroidManifest.xml:151:17-52
+	is also present at [com.jph.takephoto:takephoto_library:4.0.3] AndroidManifest.xml:24:17-51 value=(@xml/file_paths).
+	Suggestion: add 'tools:replace="android:resource"' to <meta-data> element at AndroidManifest.xml:149:13-151:55 to override.
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':livehelp_client:processUmengDebugManifest'.
+> Manifest merger failed : Attribute meta-data#android.support.FILE_PROVIDER_PATHS@resource value=(@xml/myfilepaths) from AndroidManifest.xml:151:17-52
+  	is also present at [com.jph.takephoto:takephoto_library:4.0.3] AndroidManifest.xml:24:17-51 value=(@xml/file_paths).
+  	Suggestion: add 'tools:replace="android:resource"' to <meta-data> element at AndroidManifest.xml:149:13-151:55 to override.
+
+* Try:
+Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.
+
+* Get more help at https://help.gradle.org
+
+BUILD FAILED in 1s
+
+
+
+
+5：需要进行整理网络请求！ 并且已一个现有接口进行测试！ （商议后 交由常利兵 吴成峰实现）
+
+6：服务修改底部弹出价格明细框 （已完成04:24   10:40）
+
+7：帮工端添加地址选择utils类，（已完成04:24  10:43 ）
+
+8; 修改编辑收货地址按钮高度 （已完成 11:30）
+
+10：宽度放开  取消订单 帮工端的！（已完成 11:38）
+
+11:帮工端拍照崩溃问题 帮工端移植代码内容提供者冲突问题（已完成 14:54）
+
+4：需要将服务页面进行整理好
+
+12：列表页面的处理， 包括刷新 加载更多 加载空白页面， 加载类表头目和列表尾部 ， 分页加载等！
+
+13：照片框架回显 在个别界面不需要， 例如身份证 正反面界面。 修改第三方库， 添加字段 ， 进行判断！整理使用说明文档！ （已完成 16:02）
+
+15：解决一个空指针bug （已完成 17:20）
+
+14: 网络请求框架配置，请求login接口成功（）已完成 17:51
+
+16：网络框架下，请求网络模板及每次请求所建立的发布订阅模式对象的管理与释放 
+
+17: 优化MVP login页面的
+
+2018 04 25 
+
+23: 添加搜索框   (已完成 10:36)
+icon_search_q
+
+close_search
+
+24 : token 
+
+
 
 
 
