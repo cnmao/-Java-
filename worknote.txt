@@ -446,9 +446,6 @@ BUILD FAILED in 1s
 
 11:帮工端拍照崩溃问题 帮工端移植代码内容提供者冲突问题（已完成 14:54）
 
-4：需要将服务页面进行整理好
-
-12：列表页面的处理， 包括刷新 加载更多 加载空白页面， 加载类表头目和列表尾部 ， 分页加载等！
 
 13：照片框架回显 在个别界面不需要， 例如身份证 正反面界面。 修改第三方库， 添加字段 ， 进行判断！整理使用说明文档！ （已完成 16:02）
 
@@ -456,7 +453,6 @@ BUILD FAILED in 1s
 
 14: 网络请求框架配置，请求login接口成功（）已完成 17:51
 
-16：网络框架下，请求网络模板及每次请求所建立的发布订阅模式对象的管理与释放 
 
 17: 优化MVP login页面的
 
@@ -467,7 +463,208 @@ icon_search_q
 
 close_search
 
-24 : token 
+24 : token  (已完成)
+
+2018 04 26 
+
+4：需要将服务页面进行整理好 
+http://192.168.1.59:80/service/swagger-ui.html
+   //服务类型
+    private String type ="";
+	   type = dataset.get(position);
+	
+	    private EditText domestichelp_num;
+    private EditText domestichelp_name;
+	
+	  String phone = domestichelp_num.getText().toString();
+        String name = domestichelp_name.getText().toString();
+		    // 图片地址
+    private List<String> picStr;
+		   //图片地址()
+        boolean remove = uploadPhotosView.getPicStr().remove("1");
+        picStr = uploadPhotosView.getPicStr();
+		
+		  if (StringUtil.isEmpty(uploadPhotosView.getServiceEtStr())){
+            ToastUtils.showToast(this , "请输入服务说明");
+            return;
+        }
+
+    //用户选择的地址
+    private String mAddressResult = "";
+	  //行政编码
+    private String mCode = "";
+	//预约时间
+	 private AddressBean addressBean;
+	  //帮帮加速钱
+    private int mAccelerateMoney = 0 ;
+    private String mPoint = "" ;
+	
+
+
+16：网络框架下，请求网络模板及每次请求所建立的发布订阅模式对象的管理与释放  (已完成   11:45)
+
+17：服务中部分出现阴影遮挡问题 （已完成   14:47）
+
+{ loginBean ->
+                    mView.loginSuccess(loginBean)
+                    mView.hideProgress()
+                    //存储token + 逻辑判断
+                    LogUtil.e("login", "登录返回结果：" + loginBean.toString())
+                } , { throwable ->
+                    mView.loginFile(throwable)
+                    LogUtil.e("login", "登录返回结果：" + throwable.toString())
+                }
+
+				
+2018 04 27 工作日志
+				
+18：注意修改了电话号码和联系人输入框！(已完成 11:13)
+
+19：地址取值不精确
+
+20:修改键盘遮挡 （已完成 11:13）
+
+     android:layout_gravity="center_vertical|center"
+	 contentUri
+	 
+	 content://com.oxnice.client.fileprovider/my_images/JPEG_20180427_172825.jpg
+	 
+	 
+21: 不是进入折扣红包
+
+22: 强制token，验证界面， onresume内 不能有网络请求！
+
+23: 公益帮不存在钱  公益图片 	
+
+29：修改公益帮 底部价格不显示 ， 服务页面部分手机显示问题！
+
+12：列表页面的处理， 包括刷新 加载更多 加载空白页面， 加载类表头目和列表尾部 ， 分页加载等！ 
+
+13:修改预览空指针（已完成   10:31）
+
+14：修改维修界面 （已完成   11：50）
+
+15:整理 补单界面（已完成   15:19）
+
+关于时间的调整 ：
+
+1：回去整理屋子
+
+2：明天早上进行跑步
+
+3：天都给张瑜发状态 给父母发状态 必须积极向上
+
+4： 这个星期 ：上班要上心 ，这个星期吧能整理的除数据对接外的所有东西都整理出来！包括逻辑 
+
+日子
+
+1：晚上10点半睡觉
+2：早上6点起床
+3：每天洗两次澡 
+4：每天穿不同的衣服 
+5：日志什么的
+6：金钱 或者 是其他的要记录在案
+7：学习 ， 贵在坚持
+
+
+2018/05/03
+
+上午目标
+1：服务页面数据获取完成，
+	（跑腿-帮我买 数据处理完成）已完成 11:34
+	new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((LogworkActivity)getActivity()).showTimePop()
+            }
+        }
+		
+修改 
+		    
+			
+		
+
+2：查看镶嵌滚动问题
+3：整合下拉刷新 数据加载 （完成 16:23）
+
+下午目标
+1：所有列表页，完成数据简单适配，及 逻辑处理
+
+晚上：
+1：处理LayoutManager 源码勘探
+2：修改源码实现每次进入出现顶部下拉效果或者网络请求封装UI加载图
+3: 编写蓝牙代码的使用说明
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:gravity="center_vertical">
+
+        <LinearLayout
+            android:id="@+id/ll_logwork_bottom_price"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="费用"
+                android:textColor="@color/c_333333"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
+                android:text="15"
+                android:textColor="@color/c_f66e26"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:src="@drawable/bottom_sorrow" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="元起"
+                android:textColor="@color/c_333333"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_addnewaddress"
+            android:layout_width="77dp"
+            android:layout_height="37dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/shape_button"
+            android:text="确定"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_16sp" />
+    </RelativeLayout>
+
+	
+	1:关于姚文生工作的事 
+	
+	1：用一个月的时间进行培训 
+	2：然后用15天做一个项目 
+	
+	一会回去给他说需要学习的东西 
+	
+	1：电脑安装Studio 
+	2：
 
 
 
