@@ -578,10 +578,29 @@ http://192.168.1.59:80/service/swagger-ui.html
                 ((LogworkActivity)getActivity()).showTimePop()
             }
         }
-		
-修改 
+
 		    
-			
+
+2018 05 04  
+
+    <LinearLayout
+        android:background="@color/white"
+        android:elevation="@dimen/shadow_height"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></LinearLayout>
+		
+
+发表评价接入
+
+我的商户订单中 ：
+
+追评接入
+
+订单详情接入
+
+
+
 		
 
 2：查看镶嵌滚动问题
@@ -589,7 +608,25 @@ http://192.168.1.59:80/service/swagger-ui.html
 
 下午目标
 1：所有列表页，完成数据简单适配，及 逻辑处理
+  private SmartRefreshLayout srl_allorder;
+  srl_allorder = (SmartRefreshLayout) inflate.findViewById(R.id.srl_allorder);
+  
 
+    private ArrayList<GoodsOrderBean> mAl ;
+	  mAl = new ArrayList<>();
+	  
+	         rcvOrderAll.setAdapter(new AllKindsOrderAdapter(getActivity() ,mAl) );
+			 
+1:写完控件 赋值等
+2：点击事件
+3：整理下true false 代表rcv 可否点击
+4：注意其他订单页面也是一样的！
+5：注意吧里边的占位的 数字 写完它！
+  
+  6217866100003980963
+  
+  6217858000079842560
+  
 晚上：
 1：处理LayoutManager 源码勘探
 2：修改源码实现每次进入出现顶部下拉效果或者网络请求封装UI加载图
